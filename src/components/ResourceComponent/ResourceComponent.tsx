@@ -32,19 +32,33 @@ const ResourceComponent = () => {
                 <b>Total pages:</b> {resourceList?.total_pages}
             </div>
             <div>
-                <b>Users: </b>
-                {resourceList?.data.map((resource, index) => {
-                    return (
-                        <ListComponent
-                            key={index}
-                            id={resource.id}
-                            name={resource.name}
-                            pantone_value={resource.pantone_value}
-                            year={resource.year}
-                            color={resource.color}
-                        ></ListComponent>
-                    );
-                })}
+                <b>Resources: </b>
+
+                <table className="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th>Resource ID</th>
+                            <th>Name</th>
+                            <th>Pantone value</th>
+                            <th>Year</th>
+                            <th>Color</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {resourceList?.data.map((resource, index) => {
+                            return (
+                                <ListComponent
+                                    key={index}
+                                    id={resource.id}
+                                    name={resource.name}
+                                    pantone_value={resource.pantone_value}
+                                    year={resource.year}
+                                    color={resource.color}
+                                ></ListComponent>
+                            );
+                        })}
+                    </tbody>
+                </table>
             </div>
         </div>
     );

@@ -1,6 +1,3 @@
-import ResourceDto from "../../dtos/ResourceDto";
-import UserDto from "../../dtos/UserDto";
-
 type UserProps = {
     id: number;
     email: string;
@@ -25,43 +22,23 @@ const ListComponent = (props: UserProps | ResourceProps): JSX.Element => {
 
     if (userProps.email) {
         html = (
-            <div>
-                <div>
-                    <b>User ID:</b> {userProps.id}
-                </div>
-                <div>
-                    <b>First name:</b> {userProps.first_name}
-                </div>
-                <div>
-                    <b>Last name:</b> {userProps.last_name}
-                </div>
-                <div>
-                    <b>Email:</b> {userProps.email}
-                </div>
-                <div>
-                    <b>Avatar: </b> {userProps.avatar}
-                </div>
-            </div>
+            <tr>
+                <td>{userProps.id}</td>
+                <td>{userProps.first_name}</td>
+                <td>{userProps.last_name}</td>
+                <td>{userProps.email}</td>
+                <td>{userProps.avatar}</td>
+            </tr>
         );
     } else if (resourceProps.color) {
         html = (
-            <div>
-                <div>
-                    <b>Resource ID:</b> {resourceProps.id}
-                </div>
-                <div>
-                    <b>Name:</b> {resourceProps.name}
-                </div>
-                <div>
-                    <b>Pantone value:</b> {resourceProps.pantone_value}
-                </div>
-                <div>
-                    <b>Year:</b> {resourceProps.year}
-                </div>
-                <div>
-                    <b>Color: </b> {resourceProps.color}
-                </div>
-            </div>
+            <tr>
+                <td>{resourceProps.id}</td>
+                <td>{resourceProps.name}</td>
+                <td>{resourceProps.pantone_value}</td>
+                <td>{resourceProps.year}</td>
+                <td>{resourceProps.color}</td>
+            </tr>
         );
     }
 

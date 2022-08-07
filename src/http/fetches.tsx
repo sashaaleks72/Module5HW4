@@ -1,3 +1,4 @@
+import AuthResponse from "../dtos/AuthResponse";
 import ResourceDto from "../dtos/ResourceDto";
 import ResourceResponse from "../dtos/ResourceResponse";
 import UserDto from "../dtos/UserDto";
@@ -43,4 +44,40 @@ export const getResourceListByPage = async (): Promise<ResourceResponse> => {
 
     console.log(resourceList);
     return resourceList;
+};
+
+export const register = async (
+    email: string,
+    password: string
+): Promise<AuthResponse> => {
+    const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+    };
+
+    const response = await fetch(`${apiUrl}/api/register`, requestOptions);
+
+    const token: AuthResponse = await response.json();
+
+    console.log(token);
+    return token;
+};
+
+export const login = async (
+    email: string,
+    password: string
+): Promise<AuthResponse> => {
+    const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+    };
+
+    const response = await fetch(`${apiUrl}/api/login`, requestOptions);
+
+    const token: AuthResponse = await response.json();
+
+    console.log(token);
+    return token;
 };

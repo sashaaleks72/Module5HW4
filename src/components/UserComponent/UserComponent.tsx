@@ -32,18 +32,31 @@ const UserComponent = () => {
             </div>
             <div>
                 <b>Users: </b>
-                {userList?.data.map((user, index) => {
-                    return (
-                        <ListComponent
-                            key={index}
-                            id={user.id}
-                            first_name={user.first_name}
-                            last_name={user.last_name}
-                            email={user.email}
-                            avatar={user.avatar}
-                        ></ListComponent>
-                    );
-                })}
+                <table className="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th>User ID</th>
+                            <th>First name</th>
+                            <th>Last name</th>
+                            <th>Email</th>
+                            <th>Avatar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {userList?.data.map((user, index) => {
+                            return (
+                                <ListComponent
+                                    key={index}
+                                    id={user.id}
+                                    first_name={user.first_name}
+                                    last_name={user.last_name}
+                                    email={user.email}
+                                    avatar={user.avatar}
+                                ></ListComponent>
+                            );
+                        })}
+                    </tbody>
+                </table>
             </div>
         </div>
     );

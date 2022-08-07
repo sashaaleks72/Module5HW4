@@ -1,3 +1,8 @@
 .app-block {
   display: flex;
+  flex-direction: column;
+}
+
+.app-inline-block {
+  display: flex;
 }

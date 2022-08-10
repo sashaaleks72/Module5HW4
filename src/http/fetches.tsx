@@ -1,4 +1,5 @@
 import AuthResponse from "../dtos/AuthResponse";
+import ErrorResponse from "../dtos/ErrorResponse";
 import ResourceDto from "../dtos/ResourceDto";
 import ResourceResponse from "../dtos/ResourceResponse";
 import UserDto from "../dtos/UserDto";
@@ -12,7 +13,6 @@ export const getUser = async (): Promise<UserDto> => {
 
     const user: UserDto = response.data;
 
-    console.log(user);
     return user;
 };
 
@@ -22,17 +22,23 @@ export const getUserListByPage = async (): Promise<UserResponse> => {
 
     const userList: UserResponse = response;
 
-    console.log(userList);
     return userList;
 };
 
-export const getResource = async (): Promise<ResourceDto> => {
-    const result: Response = await fetch(`${apiUrl}/api/unknown/2`);
-    const response = await result.json();
+export const getResourceById = async (
+    id: string
+): Promise<ResourceDto | ErrorResponse> => {
+    const result: Response = await fetch(`${apiUrl}/api/unknown/${id}`);
+    const response: any = await result.json();
 
-    const resource: ResourceDto = response.data;
+    let resource: ResourceDto | ErrorResponse = response.data;
 
-    console.log(resource);
+    if (!result.ok) {
+        resource = {
+            code: result.status,
+        };
+    }
+
     return resource;
 };
 
@@ -42,7 +48,6 @@ export const getResourceListByPage = async (): Promise<ResourceResponse> => {
 
     const resourceList: ResourceResponse = response;
 
-    console.log(resourceList);
     return resourceList;
 };
 
@@ -60,7 +65,6 @@ export const register = async (
 
     const token: AuthResponse = await response.json();
 
-    console.log(token);
     return token;
 };
 
@@ -78,6 +82,5 @@ export const login = async (
 
     const token: AuthResponse = await response.json();
 
-    console.log(token);
     return token;
 };
